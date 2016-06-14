@@ -54,4 +54,4 @@ And finally to [Mike Bostock](https://github.com/mbostock) for making [D3.js](ht
 
 ## License
 
-TODO: Write license
+DWTFYW License. Information should be open.

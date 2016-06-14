@@ -5,15 +5,16 @@ D3-eyes is a simple web application that creates impression heatmaps from user e
 
 -----------------
 ![Simple Example of how d3-eyes can be used. See index.html for code](https://raw.githubusercontent.com/ryan-p-larson/d3-eyes/master/examples/proof-of-concept-closer.PNG)
--------------------------------
 
 
 ## Installation
 Installation is easy. All is requires is a simple clone and go as the JavaScript libraries have already been compiled. 
+
 `git clone https://github.com/ryan-p-larson/d3-eyes.git`
 
 ## Usage
 Everytime you want to use d3-eyes, you must serve the parent folder up in a local http server.
+
 1. Enter the folder: `cd d3-eyes'
 2. Start a Python server or other way to host files locally (a pain otherwise).
     - Python 2: `python -m SimpleHTTPServer 8000 &`

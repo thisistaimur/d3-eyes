@@ -37,10 +37,12 @@ Everytime you want to use d3-eyes, you must serve the parent folder up in a loca
 - [ ] Working opacity slider 
 - [ ] Changeable colorschemes
 - [ ] Spacing between hexagons?
+
 ##### Interface
 - [ ] Cleaner styling
 - [ ] Drag 'n drop image entry
 - [ ] Actuall CSS libraries
+
 ##### General
 - [ ] User information entry & data entry
 - [ ] Optimize efficiency

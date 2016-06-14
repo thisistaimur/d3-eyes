@@ -7,19 +7,21 @@ function render(rad) {
     d3.selectAll(".hexagons").remove();
 
     var margin = {top:10, right:10, bottom:10, left:10};
-		//rad = 10;
+	width = +d3.select("svg").attr("width"),
+	height = +d3.select("svg").attr("height");
+
 	var hexbin = d3_hexbin.hexbin()
 		.x(function(d) { return d.x; })
 		.y(function(d) { return d.y; })
-	    .extent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]])
+	    .extent([[0,0], [width, height]])
 	    .radius(rad);
 
 	var bins = hexbin(impressionPoints);
 
 	var color = d3.scaleLinear()
 		.domain([0, d3.max(bins, function(d) { return d.length; })])
-		.range(["white", "green"])
-		.interpolate(d3.interpolateHcl);
+		.range(["white", "orangeRed"])
+		.interpolate(d3.interpolateCubehelix.gamma(3));
 
 	var x = d3.scaleIdentity().domain([0, width]),
 	    y = d3.scaleIdentity().domain([0, height]);
@@ -35,7 +37,7 @@ function render(rad) {
 	    .attr("d", hexbin.hexagon())
 	    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
 	    .style("fill", function(d) { return color(d.length); })
-        .style("opcity", "0.5");
+            .style("opacity", "0.75");
 }
 
 window.onload = function() {

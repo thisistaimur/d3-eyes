@@ -4,17 +4,24 @@
     <TITLE>Simple Demonstration of how WebGazer.js works</TITLE>
 
     <style type="text/css">
+	body {
+	font-family: sans-serif;
+}
 
     .hexagons {
       fill: none;
       stroke: #fff;
       stroke-opacity: 0.5;
 }
+
     </style>
 </HEAD>
 <BODY LANG="en-US" LINK="#0000ff" DIR="LTR">
 
 <div id="container">
+	<div id="header">
+		<h1>Eyetracker & Heatmap</h1>
+	</div>
     <div id="focus"></div>
     <div id="context">
         <span>
@@ -24,7 +31,10 @@
             <button type="button" id="buttonResume" onClick="webgazer.resume()">Resume</button>
             <button type="button" id="buttonFinish" onClick="render(15)">Finish</button>
         </span>
+	<br>
         <input type="range" min="10" max="25" value="15" id="hexRadius">Radius</input>
+	<br>
+	<input type="range" min="0" max="1" step="0.1" value=".5" id="hexOpacity">Opacity</input>
     </div>
 </div>
 
@@ -34,26 +44,35 @@
 <script src="js/app.js"></script>
 <script>
 // Init the svg to which we will be working on
-var width = window.innerWidth,
-    height = window.innerHeight *.75,
-    svg = d3.select("#focus").append("svg")
-        .attr("width", width)
-        .attr("height", height);
+//var width = window.innerWidth,height = window.innerHeight *.75,
+var svg = d3.select("#focus").append("svg");
+	//.style("clip-path", "url(#focus)");
 
 //Add listener to insert the photo
 d3.select("#inputUpload").on("change", function() {
     var reader = new FileReader();
     reader.onloadend = function (e) {
-        d3.select("#focus").style("background-image", "url(" + e.target.result +")");
+	var image = new Image();
+	image.src = e.target.result;
+
+	image.onload = function() {
+		svg.attr("width", this.width).attr("height", this.height);
+		d3.select("#focus")
+			.style("background-image", "url(" + e.target.result +")")
+			.style("background-repeat", "no-repeat");
+	};
     };
     reader.readAsDataURL(this.files[0]);
 });
 
 //Set listener for the radius slider
-d3.select("hexRadius").on("change", function() {
+d3.select("#hexRadius").on("change", function() {
     return render(+this.value);
 });
 
+d3.select("#hexOpcaity").on("change", function() {
+    return d3.selectAll(".hexagons").style("opacity", +this.value);
+});
 
 </script>
 </BODY>

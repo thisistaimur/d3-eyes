@@ -1,8 +1,6 @@
 var impressionPoints = [];
 
-
 function render(rad) {
-
     //clear previous
     d3.selectAll(".hexagons").remove();
 
@@ -21,7 +19,7 @@ function render(rad) {
 	var color = d3.scaleLinear()
 		.domain([0, d3.max(bins, function(d) { return d.length; })])
 		.range(["white", "orangeRed"])
-		.interpolate(d3.interpolateCubehelix.gamma(3));
+		.interpolate(d3.interpolateCubehelix.gamma(1));
 
 	var x = d3.scaleIdentity().domain([0, width]),
 	    y = d3.scaleIdentity().domain([0, height]);
@@ -34,13 +32,18 @@ function render(rad) {
 	  .selectAll("path")
 	    .data(bins)
 	  .enter().append("path")
+	    .attr("class", "sixes")
 	    .attr("d", hexbin.hexagon())
 	    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
 	    .style("fill", function(d) { return color(d.length); })
             .style("opacity", "0.75");
 }
 
-window.onload = function() {
+
+window.onload = loadEyeTracking();
+
+function loadEyeTracking() {
+	// Set parameters for the tracker
 	webgazer.setRegression('ridge')
 		.setTracker("clmtrackr")
 		.setGazeListener(function(data, clock) {
@@ -58,6 +61,7 @@ window.onload = function() {
 	var setup = function() {
 		var cl = webgazer.getTracker().clm;
 	}
+
 	function checkIfReady() {
 		if (webgazer.isReady()) {
 			setup();
@@ -67,4 +71,30 @@ window.onload = function() {
 	}
 
 	setTimeout(checkIfReady, 100);
-};
+}
+
+function imageUpload(uploaded) {
+	// Read file
+
+	var reader = new FileReader();
+        reader.onloadend = function (e) {
+		// Create image to then perform DOM manipulation with
+		var image = new Image();
+		image.src = e.target.result;
+
+		image.onload = function() {
+			svg.attr("width", this.width)
+				.attr("height", this.height);
+			d3.select("#focus")
+				.style("background-image", "url(" + e.target.result +")")
+				.style("background-repeat", "no-repeat");
+		};
+    	};
+    	//reader.readAsDataURL(this.files[0]);
+	reader.readAsDataURL(uploaded.files[0]);
+
+	//Add blurry box
+	//http://bl.ocks.org/mbostock/1342359
+
+	
+}

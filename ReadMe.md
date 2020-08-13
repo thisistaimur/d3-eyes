@@ -1,16 +1,16 @@
-D3-eyes
+Zights Mapper
 =====
 
-D3-eyes is a simple web application that creates impression heatmaps from user eye tracking data. This application uses WebGazer.js from Brown University and D3.js from Mike Bostock and others.
+Zights Mapper is a simple web application that maps impression heatmaps from user eye tracking data. This application uses WebGazer.js from Brown University and D3.js
 
 -----------------
-![Simple Example of how d3-eyes can be used. See index.html for code](https://raw.githubusercontent.com/ryan-p-larson/d3-eyes/master/examples/proof-of-concept-closer.PNG)
+![Simple Example of how Zights Mapper can be used. See index.html for code](https://raw.githubusercontent.com/ryan-p-larson/d3-eyes/master/examples/proof-of-concept-closer.PNG)
 
 
 ## Installation
 Installation is easy. All is requires is a simple clone and go as the JavaScript libraries have already been compiled. 
 
-`git clone https://github.com/ryan-p-larson/d3-eyes.git`
+`git clone <LINK TO REPO>`
 
 ## Usage
 Everytime you want to use d3-eyes, you must serve the parent folder up in a local http server.

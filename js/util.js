@@ -1,3 +1,4 @@
+
 (function() {
 
     self.webgazer = self.webgazer || {};

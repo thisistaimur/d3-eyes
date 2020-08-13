@@ -10,7 +10,7 @@ function render(rad) {
 	width = +d3.select("svg").attr("width"),
 	height = +d3.select("svg").attr("height");
 
-	var hexbin = d3_hexbin.hexbin()
+	var hexbin = d3.hexbin()
 		.x(function(d) { return d.x; })
 		.y(function(d) { return d.y; })
 	    .extent([[0,0], [width, height]])
@@ -40,9 +40,17 @@ function render(rad) {
             .style("opacity", "0.75");
 }
 
+//change clocl to timestamp
+
 window.onload = function() {
-	webgazer.setRegression('ridge')
-		.setTracker("clmtrackr")
+	
+	webgazer
+              .setRegression("ridge")
+              .showVideo(true)
+              .showFaceOverlay(true)
+              .showFaceFeedbackBox(true)
+			  
+
 		.setGazeListener(function(data, clock) {
 			// Conditional function to be made
 			if (data) {
@@ -54,9 +62,9 @@ window.onload = function() {
 			};
 		})
 		.showPredictionPoints(true);
-
+		window.applyKalmanFilter = true;
 	var setup = function() {
-		var cl = webgazer.getTracker().clm;
+		var cl = webgazer.getTracker();
 	}
 	function checkIfReady() {
 		if (webgazer.isReady()) {

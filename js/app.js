@@ -40,8 +40,8 @@ function render(rad) {
             .style("opacity", "0.75");
 }
 
-//change clocl to timestamp
-
+//change clock to timestamp
+//Daniel please don't  YEAH !get out of my code
 window.onload = function() {
 	
 	webgazer
